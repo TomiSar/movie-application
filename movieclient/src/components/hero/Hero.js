@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 const Hero = ({ movies }) => {
   const navigate = useNavigate();
 
-  function reviews(movieId) {
+  function navigateToReview(movieId) {
     navigate(`/Reviews/${movieId}`);
   }
 
@@ -28,13 +28,19 @@ const Hero = ({ movies }) => {
                     <div className='movie-poster'>
                       <img src={movie.poster} alt='' />
                     </div>
-                    <div className='movie-title'>
-                      <h4>{movie.title}</h4>
+                    <div className='movie-content'>
+                      <div className='movie-title'>
+                        <h4>{movie.title}</h4>
+                      </div>
+                      <div className='movie-info'>
+                        <p>Release Date: {movie.releaseDate}</p>
+                        <p>Genres: {movie.genres.join(', ')}</p>
+                      </div>
                     </div>
                     <div className='movie-buttons-container'>
                       <Link
                         to={`/Trailer/${movie.trailerLink.substring(
-                          movie.trailerLink.length - 11
+                          movie.trailerLink.length - 11,
                         )}`}
                       >
                         <div className='play-button-icon-container'>
@@ -44,11 +50,10 @@ const Hero = ({ movies }) => {
                           />
                         </div>
                       </Link>
-
                       <div className='movie-review-button-container'>
                         <Button
                           variant='info'
-                          onClick={() => reviews(movie.imdbId)}
+                          onClick={() => navigateToReview(movie.imdbId)}
                         >
                           Reviews
                         </Button>

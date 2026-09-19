@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import ReviewForm from '../reviewform/ReviewForm';
 
-import React from 'react';
-
 const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
   const revText = useRef();
   let params = useParams();
@@ -27,7 +25,6 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
       });
 
       const updatedReviews = [...reviews, { body: rev.value }];
-
       rev.value = '';
 
       setReviews(updatedReviews);
@@ -69,7 +66,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
           {reviews?.map((review) => {
             return (
               <>
-                <Row key={review.body}>
+                <Row key={`${review._id}-${review.body}`}>
                   <Col>{review.body}</Col>
                 </Row>
                 <Row>

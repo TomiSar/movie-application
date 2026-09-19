@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import api from './api/axiosConfig';
+import api, { apiURL } from './api/axiosConfig';
 import Layout from './components/Layout';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/home/Home';
@@ -10,8 +10,6 @@ import Reviews from './components/reviews/Reviews';
 import NotFound from './components/notfound/NotFound';
 
 function App() {
-  const apiURL = '/api/v1/movies';
-
   const [movies, setMovies] = useState();
   const [movie, setMovie] = useState();
   const [reviews, setReviews] = useState();
@@ -39,8 +37,6 @@ function App() {
   };
 
   useEffect(() => {
-    // console.log('Testing');
-    console.log('Hello Movies API list');
     getMovies();
   }, []);
 
@@ -55,6 +51,7 @@ function App() {
             path='/Reviews/:movieId'
             element={
               <Reviews
+                key={movie?.imdbId}
                 getMovieData={getMovieData}
                 movie={movie}
                 reviews={reviews}

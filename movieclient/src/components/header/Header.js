@@ -7,6 +7,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
 
 const Header = () => {
+  const handleLogin = () => {
+    console.log('Hello from login');
+    // Implement login logic here
+  };
+
+  const handleRegister = () => {
+    console.log('Hello from register');
+    // Implement register logic here
+  };
+
   return (
     <Navbar bg='dark' variant='dark' expand='lg'>
       <Container fluid>
@@ -28,10 +38,24 @@ const Header = () => {
               Watch List
             </NavLink>
           </Nav>
-          <Button variant='outline-info' className='me-2'>
-            Login
-          </Button>
-          <Button variant='outline-info'>Register</Button>
+          <NavLink className='nav-link' to='/login'>
+            <Button
+              variant='outline-info'
+              className='me-2'
+              onClick={handleLogin}
+            >
+              Login
+            </Button>
+          </NavLink>
+          <NavLink className='nav-link' to='/register'>
+            <Button
+              variant='outline-info'
+              className='me-2'
+              onClick={handleRegister}
+            >
+              Register
+            </Button>
+          </NavLink>
         </Navbar.Collapse>
       </Container>
     </Navbar>
